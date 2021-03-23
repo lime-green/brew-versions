@@ -7,8 +7,13 @@ Homebrew makes this difficult as a design decision, but sometimes old packages
 need to be installed and we need a way to do so easily.
 
 ## Installation
+With [pipx](https://github.com/pipxproject/pipx)
 ```bash
-pip install --user brew-versions
+pipx install brew-versions
+```
+Or just with pip:
+```bash
+python3 -m pip install --user brew-versions
 ```
 
 ## Usage
@@ -84,5 +89,5 @@ systems, if the bottle is not found then parsing old formulas fails quite often
 since Homebrew updates their code frequently.
 
 Bintray.com will be disabled on May 1st 2021, and homebrew as of now hasn't updated to a new host. When
-they, this package will need to be updated and it's possible some of the
+they do, this package will need to be updated and it's possible some of the
 functionality like listing available bottle versions won't work
