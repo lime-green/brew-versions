@@ -1,8 +1,19 @@
 # Brew Versions (`brewv`)
+[![PyPI version](https://badge.fury.io/py/brew-versions.svg)](https://badge.fury.io/py/brew-versions)
+![Python versions](https://img.shields.io/pypi/pyversions/brew-versions.svg?style=flat-square&label=Python%20Versions)
 
-Manage multiple versions of your Homebrew packages with ease:
+Manage multiple versions of your Homebrew packages with ease!
+Homebrew makes this difficult as a design decision, but sometimes old packages
+need to be installed and we need a way to do so easily.
 
-1. List available bottle versions:
+## Installation
+```bash
+pip install --user brew-versions
+```
+
+## Usage
+
+#### List available bottle versions:
 ```bash
 $ brewv switch wget
 [brewv]: Found the following bottle versions for wget:
@@ -27,7 +38,7 @@ $ brewv switch wget
 - 1.18
 ```
 
-2. Switch to a specific version:
+#### Switch to a specific version:
 ```bash
 $ brewv switch wget 1.21
 [brewv]: Switching wget to version 1.21
@@ -38,7 +49,7 @@ $ brewv switch wget 1.21
 [brewv]: Successfully switched to wget 1.21
 ```
 
-3. Installing from taps:
+#### Installing from taps:
 ```bash
 $ brewv switch jonchang/biology/bucky 1.4.4
 [brewv]: Tapping jonchang/biology
@@ -73,5 +84,5 @@ systems, if the bottle is not found then parsing old formulas fails quite often
 since Homebrew updates their code frequently.
 
 Bintray.com will be disabled on May 1st 2021, and homebrew as of now hasn't updated to a new host. When
-they do so this package will need to be updated and it's possible some of the
+they, this package will need to be updated and it's possible some of the
 functionality like listing available bottle versions won't work
