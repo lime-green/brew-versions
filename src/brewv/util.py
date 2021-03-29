@@ -54,7 +54,18 @@ def check_output(*args, **kwargs):
 
 
 def mac_ver():
-    return platform.mac_ver()[0]
+    """
+    macOS versions increased from 10.13, 10.14, 10.15
+    until Big Sur where it got wonky. Big Sur can be 10.16 or >= 11
+    I'm assuming future versions will be similar: 11.x -> 12.x -> 13.x
+
+    This will return a normalized mac_ver, that returns the string that can
+    identify the OS version
+    """
+    mac_ver_ = platform.mac_ver()[0].split(".")
+    if int(mac_ver_[0]) >= 11:
+        return mac_ver_[0]
+    return ".".join(platform.mac_ver()[0].split(".")[:2])
 
 
 def is_supported_mac_ver():
