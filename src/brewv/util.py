@@ -65,7 +65,7 @@ def mac_ver():
     mac_ver_ = platform.mac_ver()[0].split(".")
     if int(mac_ver_[0]) >= 11:
         return mac_ver_[0]
-    return ".".join(platform.mac_ver()[0].split(".")[:2])
+    return ".".join(mac_ver_[:2])
 
 
 def is_supported_mac_ver():
