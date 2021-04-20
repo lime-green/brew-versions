@@ -23,7 +23,7 @@ def cli():
 
 @cli.command()
 @click.argument("formula_name")
-@click.argument("version", required=False)
+@click.argument("version")
 @click.option(
     "--slow/--no-slow",
     "slow",
@@ -31,7 +31,7 @@ def cli():
     type=bool,
     help="Enable this to allow searching the HUGE homebrew repository. This takes ages",
 )
-def switch(formula_name, slow, version=None):
+def switch(formula_name, slow, version):
     core.switch(formula_name, version, slow)
     logger.info(
         f"Successfully switched to {formula_name} {version}",

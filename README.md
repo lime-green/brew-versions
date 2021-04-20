@@ -18,31 +18,6 @@ python3 -m pip install --user brew-versions
 
 ## Usage
 
-#### List available bottle versions:
-```bash
-$ brewv switch wget
-[brewv]: Found the following bottle versions for wget:
-- 1.21.1
-- 1.21
-- 1.20.3_2
-- 1.20.3_1
-- 1.20.3
-- 1.20.2
-- 1.20.1_4
-- 1.20.1_3
-- 1.20.1_2
-- 1.20.1_1
-- 1.19.5
-- 1.19.4_1
-- 1.19.4
-- 1.19.3
-- 1.19.2_1
-- 1.19.2
-- 1.19.1_1
-- 1.19.1
-- 1.18
-```
-
 #### Switch to a specific version:
 ```bash
 $ brewv switch wget 1.21
@@ -87,7 +62,3 @@ the huge homebrew-core repository.
 While homebrew bottles exist for most operating
 systems, if the bottle is not found then parsing old formulas fails quite often
 since Homebrew updates their code frequently.
-
-Bintray.com will be disabled on May 1st 2021, and homebrew as of now hasn't updated to a new host. When
-they do, this package will need to be updated and it's possible some of the
-functionality like listing available bottle versions won't work

@@ -26,18 +26,10 @@ def symlink_force(link_path, target):
             raise
 
 
-def download_file(url, destination_path, sha256_verification=None):
+def download_file(url, destination_path, headers=None, sha256_verification=None):
     logger.info(f"GET {url}")
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
-
-    # This doesn't offer much security benefit since it comes from
-    # the same source as the content itself
-    if "X-Checksum-Sha256" in response.headers and response.headers[
-        "X-Checksum-Sha256"
-    ] != sha_256(response.content):
-        logger.error("SHA256 mismatch occured in transit")
-        raise HashMismatch
 
     if sha256_verification:
         if sha256_verification == sha_256(response.content):
@@ -47,6 +39,20 @@ def download_file(url, destination_path, sha256_verification=None):
 
     with open(destination_path, "wb") as f:
         f.write(response.content)
+
+
+def make_request(url, headers=None):
+    logger.info(f"GET {url}")
+
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+
+    if response.headers.get("content-type") in [
+        "application/json",
+        "application/vnd.oci.image.index.v1+json",
+    ]:
+        return response.json()
+    return response.content
 
 
 def check_output(*args, **kwargs):
