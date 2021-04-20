@@ -33,9 +33,9 @@ class GithubBottleClient(BottleClient):
     )[SYSTEM]
 
     def _parse_manifest(self, manifest_response, ref_name):
-        source_revision = manifest_response["annotations"][
-            "org.opencontainers.image.ref.name"
-        ]
+        source_revision = manifest_response["annotations"].get(
+            "org.opencontainers.image.revision"
+        )
 
         for manifest in manifest_response["manifests"]:
             annotations = manifest["annotations"]
