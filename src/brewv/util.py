@@ -47,6 +47,14 @@ def make_request(url, headers=None):
     response = requests.get(url, headers=headers)
     response.raise_for_status()
 
+    # This doesn't offer much security benefit since it comes from
+    # the same source as the content itself
+    if "X-Checksum-Sha256" in response.headers and response.headers[
+        "X-Checksum-Sha256"
+    ] != sha_256(response.content):
+        logger.error("SHA256 mismatch occured in transit")
+        raise HashMismatch
+
     if response.headers.get("content-type") in [
         "application/json",
         "application/vnd.oci.image.index.v1+json",
